@@ -11,6 +11,8 @@
 		82D6FA7E2AF7B57C00880D63 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6FA7D2AF7B57C00880D63 /* ContentView.swift */; };
 		82D6FA802AF7B57D00880D63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82D6FA7F2AF7B57D00880D63 /* Assets.xcassets */; };
 		82D6FA832AF7B57D00880D63 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82D6FA822AF7B57D00880D63 /* Preview Assets.xcassets */; };
+		82D6FA8C2AF7BA0600880D63 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6FA8B2AF7BA0600880D63 /* Station.swift */; };
+		82D6FA8E2AF7C2F200880D63 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6FA8D2AF7C2F200880D63 /* NavigationBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		82D6FA7D2AF7B57C00880D63 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		82D6FA7F2AF7B57D00880D63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		82D6FA822AF7B57D00880D63 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		82D6FA8B2AF7BA0600880D63 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		82D6FA8D2AF7C2F200880D63 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +56,8 @@
 			isa = PBXGroup;
 			children = (
 				82D6FA7B2AF7B57C00880D63 /* BatMobileDemoAppApp.swift */,
-				82D6FA7D2AF7B57C00880D63 /* ContentView.swift */,
+				82D6FA8A2AF7B93C00880D63 /* Model */,
+				82D6FA892AF7B93700880D63 /* View */,
 				82D6FA7F2AF7B57D00880D63 /* Assets.xcassets */,
 				82D6FA812AF7B57D00880D63 /* Preview Content */,
 			);
@@ -65,6 +70,23 @@
 				82D6FA822AF7B57D00880D63 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		82D6FA892AF7B93700880D63 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				82D6FA7D2AF7B57C00880D63 /* ContentView.swift */,
+				82D6FA8D2AF7C2F200880D63 /* NavigationBarView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		82D6FA8A2AF7B93C00880D63 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				82D6FA8B2AF7BA0600880D63 /* Station.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +160,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				82D6FA7E2AF7B57C00880D63 /* ContentView.swift in Sources */,
+				82D6FA8C2AF7BA0600880D63 /* Station.swift in Sources */,
+				82D6FA8E2AF7C2F200880D63 /* NavigationBarView.swift in Sources */,
 				82D6FA7C2AF7B57C00880D63 /* BatMobileDemoAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
