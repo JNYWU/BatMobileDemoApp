@@ -17,8 +17,18 @@ struct MenuView: View {
                 .foregroundStyle(.selectedText)
             Button("最新消息") {}
             Button("活動專區") {}
+            
+            Spacer()
+            
+            Button("登入") {}
+                .padding()
+                .padding(.horizontal)
+                .background(.white)
+                .clipShape(Capsule())
+                .foregroundStyle(.ubikeGreen)
+                .padding(.bottom)
         }
-        .padding(55)
+        .padding([.top, .leading], 55)
         .font(.title2)
         .fontWeight(.medium)
         .foregroundStyle(.white)
