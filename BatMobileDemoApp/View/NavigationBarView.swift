@@ -14,6 +14,7 @@ struct NavigationBarView: View {
     var body: some View {
         VStack {
             HStack {
+                // Ubike Logo
                 Image(.youBike)
                     .resizable()
                     .scaledToFill()
@@ -22,10 +23,12 @@ struct NavigationBarView: View {
                 
                 Spacer()
                 
+                // Sandwich Button
                 Button {
                     showMenu.toggle()
                     
                 } label: {
+                    // Show X if menu is showing
                     Image(systemName: showMenu ? "xmark" : "line.3.horizontal")
                         .font(.title2)
                         .fontWeight(.bold)

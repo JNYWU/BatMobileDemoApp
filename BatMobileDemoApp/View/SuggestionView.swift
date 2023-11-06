@@ -17,10 +17,13 @@ struct SuggestionView: View {
     var body: some View {
         ScrollView {
             
+            // Get areas contain searchText
             let areaArray = getAreaArray(stations: stations).filter { $0.contains(searchText) }
             
+            // Show the areas as Button
             ForEach(areaArray, id: \.self) { area in
                 Button {
+                    // assign value to searchText on tap
                     searchText = area
                     showSuggestion = false
                     searchisFocused = false
@@ -30,12 +33,12 @@ struct SuggestionView: View {
                     Spacer()
                 }
                 .foregroundStyle(.black)
-                .padding()
+                .padding(10)
                 
             }
             
             .frame(maxWidth: .infinity)
-            .background(.regularMaterial)
+            .background(.thickMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .padding(.horizontal)
         }
@@ -44,4 +47,18 @@ struct SuggestionView: View {
         }
         .scrollDisabled(true)
     }
+}
+
+// Function to get all the areas without duplicates
+func getAreaArray(stations: [Station]) -> [String] {
+    
+    var area: [String] = []
+    
+    for index in 0 ..< stations.count {
+        area.append(stations[index].area)
+    }
+    
+    area = Array(Set(area))
+    
+    return area
 }

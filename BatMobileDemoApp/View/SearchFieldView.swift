@@ -13,6 +13,7 @@ struct SearchFieldView: View {
     @Binding var showSuggestion: Bool
     
     var body: some View {
+        // ZStack for magnifyingglass symbol
         ZStack(alignment: .trailing) {
             TextField("搜尋站點", text: $searchText)
                 .padding(10)

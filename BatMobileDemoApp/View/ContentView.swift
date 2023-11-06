@@ -19,6 +19,7 @@ struct ContentView: View {
         if searchText.isEmpty {
             return stations
         } else {
+            // filter station with searchText
             return stations.filter { $0.area.contains(searchText) }
         }
     }
@@ -26,25 +27,34 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             
+            // ZStack for MenuView
             ZStack {
                 VStack(alignment: .leading, spacing: 20) {
                     
+                    // Title
                     Text("站點資訊")
                         .foregroundStyle(.ubikeGreen)
                         .font(.title2)
                         .fontWeight(.heavy)
                         .padding(.horizontal)
                     
+                    // SearchField
                     SearchFieldView(searchText: $searchText, searchisFocused: $searchisFocused, showSuggestion: $showSuggestion)
                     
+                    // ZStack for search suggestion
                     ZStack(alignment: .top) {
+                        
+                        // Tie sticky header and scroll view together to clipshape
                         VStack(spacing: 0) {
+                            
+                            // Sticky header of scroll view
                             HeaderView()
                             
                             ScrollView {
                                 VStack(spacing: 0) {
                                     ForEach(0 ..< searchedStations.count, id: \.self) { index in
                                         StationRowView(station: searchedStations[index])
+                                            // toggle background color between white and gray
                                             .background(index % 2 == 0 ? .white : Color(UIColor.secondarySystemBackground))
                                     }
                                 }
@@ -52,12 +62,14 @@ struct ContentView: View {
                             
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 15))
+                        // Gray outline of scroll view
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
                                 .stroke(.gray, lineWidth: 1)
                         )
                         .padding()
                         
+                        // Show search suggestions
                         if searchisFocused {
                             SuggestionView(searchText: $searchText, showSuggestion: $showSuggestion, searchisFocused: $searchisFocused, stations: $stations)
                         }
@@ -67,11 +79,13 @@ struct ContentView: View {
                 }
                 .padding(.top)
                 
+                // Show MenuView
                 if showMenu {
                     MenuView()
                 }
                 
             }
+            // Top Navigation Bar
             .safeAreaInset(edge: .top, spacing: 0) {
                 NavigationBarView(showMenu: $showMenu)
                     .onTapGesture {
@@ -86,7 +100,7 @@ struct ContentView: View {
         
     }
     
-    
+    // Get data and decode json
     func fetchData() async {
         // create URL
         guard let url = URL(string: "https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json") else {
@@ -107,18 +121,7 @@ struct ContentView: View {
     
 }
 
-func getAreaArray(stations: [Station]) -> [String] {
-    
-    var area: [String] = []
-    
-    for index in 0 ..< stations.count {
-        area.append(stations[index].area)
-    }
-    
-    area = Array(Set(area))
-    
-    return area
-}
+
 
 #Preview {
     ContentView()
