@@ -10,18 +10,19 @@ import SwiftUI
 struct MenuView: View {
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 40) {
-            Text("使用說明")
-            Text("收費方式")
-            Text("站點資訊")
+        VStack(spacing: 40) {
+            Button("使用說明") {}
+            Button("收費方式") {}
+            Button("站點資訊") {}
                 .foregroundStyle(.selectedText)
-            Text("最新消息")
-            Text("活動專區")
+            Button("最新消息") {}
+            Button("活動專區") {}
         }
+        .padding(55)
         .font(.title2)
         .fontWeight(.medium)
         .foregroundStyle(.white)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(.ubikeGreen)
     }
 }
