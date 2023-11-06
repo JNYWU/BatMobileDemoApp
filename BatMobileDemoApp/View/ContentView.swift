@@ -11,6 +11,7 @@ struct ContentView: View {
     
     @State private var stations = [Station]()
     @State private var searchText = ""
+    @State private var showSuggestion = false
     
     var searchedStations: [Station] {
         if searchText.isEmpty {
@@ -34,29 +35,63 @@ struct ContentView: View {
                     .background(Color(UIColor.secondarySystemBackground))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .padding(.horizontal)
+                    .onChange(of: searchText) {
+                        showSuggestion = searchText.isEmpty ? false : true
+                    }
                 
-                VStack(spacing: 0) {
-                    HeaderView()
-                    
-                    ScrollView {
+                ZStack(alignment: .top) {
+                    VStack(spacing: 0) {
+                        HeaderView()
                         
-                        VStack(spacing: 0) {
-                            ForEach(0 ..< searchedStations.count, id: \.self) { index in
-                                StationRowView(station: searchedStations[index])
-                                    .background(index % 2 == 0 ? .white : .gray)
+                        ScrollView {
+                            
+                            VStack(spacing: 0) {
+                                
+                                ForEach(0 ..< searchedStations.count, id: \.self) { index in
+                                    StationRowView(station: searchedStations[index])
+                                        .background(index % 2 == 0 ? .white : .gray)
+                                }
+                                
                             }
+                            
                         }
                         
                     }
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(.gray, lineWidth: 1)
+                    )
+                    .padding()
+                    
+                    if showSuggestion {
+                        ScrollView {
+                            
+                            var areaArray = getAreaArray(stations: stations).filter { $0.contains(searchText) }
+                            
+                            ForEach(areaArray, id: \.self) { area in
+                                Button {
+                                    searchText = area
+                                    showSuggestion = false
+                                } label: {
+                                    Text(area)
+                                    Spacer()
+                                }
+                                .foregroundStyle(.black)
+                                .padding()
+                                
+                            }
+                            
+                            .frame(maxWidth: .infinity)
+                            .background(.regularMaterial)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .padding(.horizontal)
+                        }
+                        .scrollDisabled(true)
+                    }
                     
                 }
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 15)
-                        .stroke(.gray, lineWidth: 1)
-                )
-                .padding()
-                
+        
             }
             .safeAreaInset(edge: .top) {
                 NavigationBarView()
@@ -88,6 +123,19 @@ struct ContentView: View {
         }
     }
     
+}
+
+func getAreaArray(stations: [Station]) -> [String] {
+    
+    var area: [String] = []
+    
+    for index in 0 ..< stations.count {
+        area.append(stations[index].area)
+    }
+    
+    area = Array(Set(area))
+    
+    return area
 }
 
 #Preview {
