@@ -12,6 +12,14 @@ struct ContentView: View {
     @State private var stations = [Station]()
     @State private var searchText = ""
     
+    var searchedStations: [Station] {
+        if searchText.isEmpty {
+            return stations
+        } else {
+            return stations.filter { $0.area.contains(searchText) }
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             
@@ -27,21 +35,18 @@ struct ContentView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .padding(.horizontal)
                 
-                
                 VStack(spacing: 0) {
                     HeaderView()
                     
                     ScrollView {
                         
                         VStack(spacing: 0) {
-                            ForEach(stations) { station in
-                                StationRowView(station: station)
+                            ForEach(0 ..< searchedStations.count, id: \.self) { index in
+                                StationRowView(station: searchedStations[index])
+                                    .background(index % 2 == 0 ? .white : .gray)
                             }
-                            
                         }
-                        .task {
-                            await fetchData()
-                        }
+                        
                     }
                     
                 }
@@ -57,6 +62,9 @@ struct ContentView: View {
                 NavigationBarView()
             }
             
+        }
+        .task {
+            await fetchData()
         }
         
     }

@@ -21,7 +21,6 @@ struct StationRowView: View {
         .padding(.leading)
         .frame(maxWidth: .infinity, minHeight: 80 , alignment: .leading)
         .padding(.horizontal)
-        .background(.gray)
     }
 }
 

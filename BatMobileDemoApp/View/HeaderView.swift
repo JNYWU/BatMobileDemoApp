@@ -13,7 +13,7 @@ struct HeaderView: View {
             Text("縣市")
                 .padding(.leading, 23)
             Text("區域")
-                .padding(.leading, 48)
+                .padding(.leading, 49)
             Text("站點名稱")
                 .padding(.leading, 64)
 

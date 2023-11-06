@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NavigationBarView: View {
+        
     var body: some View {
         HStack {
             Text("Ubike")
@@ -17,7 +18,6 @@ struct NavigationBarView: View {
             Spacer()
             
             Button("test") {
-                
             }
         }
         .frame(maxWidth: .infinity, maxHeight: 30)
