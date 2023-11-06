@@ -20,7 +20,7 @@ struct NavigationBarView: View {
                 
             }
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: 30)
         .padding()
         .background(.white)
     }

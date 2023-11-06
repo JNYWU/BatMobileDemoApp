@@ -10,23 +10,57 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var stations = [Station]()
+    @State private var searchText = ""
     
     var body: some View {
         NavigationStack {
-            List(stations) { station in
-                VStack(alignment: .leading) {
-                    Text(station.area)
-                    Text(station.name)
+            
+            VStack(alignment: .leading, spacing: 20) {
+                Divider()
+                Text("站點資訊")
+                    .font(.title)
+                    .padding(.horizontal)
+                
+                TextField("搜尋站點", text: $searchText)
+                    .padding(10)
+                    .background(Color(UIColor.secondarySystemBackground))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.horizontal)
+                
+                
+                ScrollView {
                     
+                    LazyVStack(alignment: .center, pinnedViews: [.sectionHeaders]) {
+                        Section(header: HeaderView()) {
+                            
+                            ForEach(stations) { station in
+                                StationRowView(station: station)
+                            }
+                            
+                        }
+
+                    }
+                    .task {
+                        await fetchData()
+                    }
                 }
-            }
-            .task {
-                await fetchData()
+                .onAppear {
+                    UIScrollView.appearance().bounces = false
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(.gray, lineWidth: 1)
+                )
+                .padding()
+
             }
             .safeAreaInset(edge: .top) {
                 NavigationBarView()
             }
+            
         }
+        
     }
     
     
