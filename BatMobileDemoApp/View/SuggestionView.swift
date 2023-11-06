@@ -11,6 +11,7 @@ struct SuggestionView: View {
     
     @Binding var searchText: String
     @Binding var showSuggestion: Bool
+    @FocusState.Binding var searchisFocused: Bool
     @Binding var stations: [Station]
     
     var body: some View {
@@ -22,6 +23,8 @@ struct SuggestionView: View {
                 Button {
                     searchText = area
                     showSuggestion = false
+                    searchisFocused = false
+                    
                 } label: {
                     Text(area)
                     Spacer()
@@ -35,6 +38,9 @@ struct SuggestionView: View {
             .background(.regularMaterial)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .padding(.horizontal)
+        }
+        .onTapGesture {
+            searchisFocused = false
         }
         .scrollDisabled(true)
     }

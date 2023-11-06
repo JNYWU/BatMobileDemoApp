@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var stations = [Station]()
     @State private var searchText = ""
     @State private var showSuggestion = false
+    @FocusState private var searchisFocused: Bool
     
     var searchedStations: [Station] {
         if searchText.isEmpty {
@@ -27,18 +28,28 @@ struct ContentView: View {
             VStack(alignment: .leading, spacing: 20) {
                 Divider()
                 Text("站點資訊")
+                    .foregroundStyle(.ubikeGreen)
                     .font(.title)
+                    .fontWeight(.heavy)
                     .padding(.horizontal)
                 
-                TextField("搜尋站點", text: $searchText)
-                    .padding(10)
-                    .background(Color(UIColor.secondarySystemBackground))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding(.horizontal)
-                    .onChange(of: searchText) {
-                        showSuggestion = searchText.isEmpty ? false : true
+                ZStack(alignment: .trailing) {
+                    TextField("搜尋站點", text: $searchText)
+                        .padding(10)
+                        .foregroundStyle(.ubikeGreen)
+                        .background(Color(UIColor.secondarySystemBackground))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .focused($searchisFocused)
+                        .onChange(of: searchText) {
+                            showSuggestion = searchText.isEmpty ? false : true
                     }
-                
+                    
+                    Image(systemName: "magnifyingglass")
+                        .foregroundStyle(searchText.isEmpty ? Color(UIColor.lightGray) : .ubikeGreen)
+                        .padding(.trailing)
+                }
+                .padding(.horizontal)
+
                 ZStack(alignment: .top) {
                     VStack(spacing: 0) {
                         HeaderView()
@@ -49,7 +60,7 @@ struct ContentView: View {
                                 
                                 ForEach(0 ..< searchedStations.count, id: \.self) { index in
                                     StationRowView(station: searchedStations[index])
-                                        .background(index % 2 == 0 ? .white : .gray)
+                                        .background(index % 2 == 0 ? .white : Color(UIColor.secondarySystemBackground))
                                 }
                                 
                             }
@@ -64,8 +75,8 @@ struct ContentView: View {
                     )
                     .padding()
                     
-                    if showSuggestion {
-                        SuggestionView(searchText: $searchText, showSuggestion: $showSuggestion, stations: $stations)
+                    if searchisFocused {
+                        SuggestionView(searchText: $searchText, showSuggestion: $showSuggestion, searchisFocused: $searchisFocused, stations: $stations)
                     }
                     
                 }
@@ -73,6 +84,9 @@ struct ContentView: View {
             }
             .safeAreaInset(edge: .top) {
                 NavigationBarView()
+                    .onTapGesture {
+                        searchisFocused = false
+                    }
             }
             
         }

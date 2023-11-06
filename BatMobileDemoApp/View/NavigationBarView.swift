@@ -11,13 +11,19 @@ struct NavigationBarView: View {
         
     var body: some View {
         HStack {
-            Text("Ubike")
-                .font(.largeTitle)
-                .foregroundStyle(.black)
+            Image(.youBike)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 35, height: 35)
+                .padding(.leading, 40)
             
             Spacer()
             
-            Button("test") {
+            Button {
+            } label: {
+                Image(systemName: "line.3.horizontal")
+                    .font(.title)
+                    .foregroundStyle(.ubikeGreen)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: 30)

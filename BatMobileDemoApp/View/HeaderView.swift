@@ -20,8 +20,8 @@ struct HeaderView: View {
         }
         .foregroundStyle(.white)
         .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.green)
+        .frame(maxWidth: .infinity, minHeight: 80, alignment: .leading)
+        .background(.ubikeGreen)
     }
 }
 
