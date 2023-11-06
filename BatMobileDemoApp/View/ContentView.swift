@@ -65,29 +65,7 @@ struct ContentView: View {
                     .padding()
                     
                     if showSuggestion {
-                        ScrollView {
-                            
-                            var areaArray = getAreaArray(stations: stations).filter { $0.contains(searchText) }
-                            
-                            ForEach(areaArray, id: \.self) { area in
-                                Button {
-                                    searchText = area
-                                    showSuggestion = false
-                                } label: {
-                                    Text(area)
-                                    Spacer()
-                                }
-                                .foregroundStyle(.black)
-                                .padding()
-                                
-                            }
-                            
-                            .frame(maxWidth: .infinity)
-                            .background(.regularMaterial)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .padding(.horizontal)
-                        }
-                        .scrollDisabled(true)
+                        SuggestionView(searchText: $searchText, showSuggestion: $showSuggestion, stations: $stations)
                     }
                     
                 }
@@ -141,3 +119,4 @@ func getAreaArray(stations: [Station]) -> [String] {
 #Preview {
     ContentView()
 }
+

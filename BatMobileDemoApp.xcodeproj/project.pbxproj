@@ -15,6 +15,7 @@
 		82D6FA8E2AF7C2F200880D63 /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6FA8D2AF7C2F200880D63 /* NavigationBarView.swift */; };
 		82D6FA902AF7C61F00880D63 /* StationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6FA8F2AF7C61F00880D63 /* StationRowView.swift */; };
 		82D6FA922AF7CC0E00880D63 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6FA912AF7CC0E00880D63 /* HeaderView.swift */; };
+		82D6FA942AF8C26800880D63 /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6FA932AF8C26800880D63 /* SuggestionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		82D6FA8D2AF7C2F200880D63 /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		82D6FA8F2AF7C61F00880D63 /* StationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationRowView.swift; sourceTree = "<group>"; };
 		82D6FA912AF7CC0E00880D63 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		82D6FA932AF8C26800880D63 /* SuggestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				82D6FA8D2AF7C2F200880D63 /* NavigationBarView.swift */,
 				82D6FA8F2AF7C61F00880D63 /* StationRowView.swift */,
 				82D6FA912AF7CC0E00880D63 /* HeaderView.swift */,
+				82D6FA932AF8C26800880D63 /* SuggestionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82D6FA7E2AF7B57C00880D63 /* ContentView.swift in Sources */,
+				82D6FA942AF8C26800880D63 /* SuggestionView.swift in Sources */,
 				82D6FA922AF7CC0E00880D63 /* HeaderView.swift in Sources */,
 				82D6FA8C2AF7BA0600880D63 /* Station.swift in Sources */,
 				82D6FA8E2AF7C2F200880D63 /* NavigationBarView.swift in Sources */,
