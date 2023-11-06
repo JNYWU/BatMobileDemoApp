@@ -18,9 +18,10 @@ struct StationRowView: View {
             
             Text(station.name.replacingOccurrences(of: "YouBike2.0_", with: ""))
         }
+        .padding(.leading)
+        .frame(maxWidth: .infinity, minHeight: 80 , alignment: .leading)
         .padding(.horizontal)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
+        .background(.gray)
     }
 }
 

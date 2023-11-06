@@ -28,24 +28,22 @@ struct ContentView: View {
                     .padding(.horizontal)
                 
                 
-                ScrollView {
+                VStack(spacing: 0) {
+                    HeaderView()
                     
-                    LazyVStack(alignment: .center, pinnedViews: [.sectionHeaders]) {
-                        Section(header: HeaderView()) {
-                            
+                    ScrollView {
+                        
+                        VStack(spacing: 0) {
                             ForEach(stations) { station in
                                 StationRowView(station: station)
                             }
                             
                         }
-
+                        .task {
+                            await fetchData()
+                        }
                     }
-                    .task {
-                        await fetchData()
-                    }
-                }
-                .onAppear {
-                    UIScrollView.appearance().bounces = false
+                    
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 .overlay(
@@ -53,7 +51,7 @@ struct ContentView: View {
                         .stroke(.gray, lineWidth: 1)
                 )
                 .padding()
-
+                
             }
             .safeAreaInset(edge: .top) {
                 NavigationBarView()
